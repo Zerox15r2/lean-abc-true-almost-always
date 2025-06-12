@@ -1,0 +1,46 @@
+% This file makes a web version of the blueprint
+% It should include all the \usepackage needed for this version.
+% The template includes standard AMS packages.
+% It is otherwise a very minimal preamble (you should probably at least
+% add cleveref and tikz-cd).
+
+\documentclass{report}
+
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{hyperref}
+\usepackage[showmore, dep_graph]{blueprint}
+% Blackboard Bold letters
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\F}{{\mathbb F}}
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\T}{{\mathbb T}}
+\newcommand{\D}{{\mathbb D}}
+
+% Math operators (the correct way to define them)
+\DeclareMathOperator\rad{rad}
+\DeclareMathOperator{\diag}{diag}
+
+% Other shortcuts
+\newcommand{\1}{{\mathbf 1}}
+\newcommand{\eps}{\varepsilon} % Using varepsilon (ε) which is often preferred over epsilon (ϵ)
+\renewcommand{\phi}{\varphi}  % Personal preference for phi symbol
+
+
+\input{macros/common}
+\input{macros/web}
+
+\home{https://morph-labs.github.io/lean-abc-true-almost-always}
+\github{https://github.com/morph-labs/lean-abc-true-almost-always}
+\dochome{https://morph-labs.github.io/lean-abc-true-almost-always/docs}
+
+\title{abc exceptions}
+\author{morph}
+
+\begin{document}
+\maketitle
+\input{content}
+\end{document}

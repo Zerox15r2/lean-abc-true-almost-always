@@ -1,0 +1,650 @@
+\chapter{smallpaper}
+\begin{lemma}\label{lem1} \lean{two_rpow_ge_add_one}\leanok
+We have $2^x \ge x+1$ for any real $x\ge1$.
+\end{lemma}
+\begin{proof}
+\leanok
+\end{proof}
+
+\begin{lemma}\label{lem2} \lean{two_rpow_ge_half_add_one}
+We have $2^x \ge x/2+1$ for any real $x\ge0$.
+\end{lemma}
+\begin{proof}
+\leanok
+\end{proof}
+
+
+\begin{theorem}[Fundamental theorem of arithmetic] \label{thm3} \lean{fundamental_theorem_of_arithmetic}\leanok
+Every integer $n\ge1$ factors uniquely into a product of primes $n = p_1^{a_1}\cdots p_k^{a_k}$.
+\end{theorem}
+\begin{proof}
+\leanok
+\end{proof}
+
+\begin{definition}[Divisor function] \label{def4} \lean{tau}\leanok
+$\tau(n)$ denotes the number of divisors of an integer $n\ge1$.
+\end{definition}
+
+\begin{lemma} \label{lem5} \lean{tau_eq_prod_factorization_add_one}\leanok
+If $n = p_1^{a_1}\cdots p_k^{a_k}$ is the prime factorization of an integer, then the divisor function evaluated at $n$ equals $\tau(n) = (a_1+1)\cdots(a_k+1)$.
+\end{lemma}
+\begin{proof}
+\leanok
+\end{proof}
+
+\begin{lemma} \label{lem6} \lean{tau_n_div_n_rpow_eps_eq_prod}
+If $n = p_1^{a_1}\cdots p_k^{a_k}$ is the prime factorization of an integer, then
+\begin{equation}\label{eq:taunn}
+\frac{\tau(n)}{n^\eps} = \prod_{i\le k}\frac{a_i+1}{p_i^{a_i \eps}}.
+\end{equation}
+\end{lemma}
+\begin{proof}\leanok
+\uses{def4, lem5}
+Use definition \ref{def4}, lemma \ref{lem5}.
+\end{proof}
+
+
+\begin{lemma} \label{lem7} \lean{lemma7}
+Let $p_i,a_i\ge1$ and $\eps>0$. If $p_i^{\eps}\ge 2$ then $\frac{a_i+1}{p_i^{a_i \eps}}\le \frac{a_i+1}{2^{a_i}}\le 1$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem1}
+Use lemma \ref{lem1} with $x=a_i$.
+\end{proof}
+
+\begin{lemma} \label{lem8} \lean{lemma8}
+Let $p_i,a_i\ge1$ and $\eps>0$. If $p_i^{\eps}< 2$ then $\frac{a_i+1}{p_i^{a_i \eps}}\le 2/\eps$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem2}
+Use lemma \ref{lem2} with $x=\eps$.
+\end{proof}
+
+\begin{lemma} \label{lem9} \lean{lemma9}
+If $\eps>0$, $a_1,\ldots,a_k\ge1$ are integers, and $p_1,\ldots, p_k$ are primes, then 
+\[
+\prod_{i\le k}\frac{a_i+1}{p_i^{a_i \eps}} = \prod_{i\le k, \, p_i^{\eps}\ge 2}\frac{a_i+1}{p_i^{a_i \eps}}\prod_{i\le k, \, p_i^{\eps}< 2}\frac{a_i+1}{p_i^{a_i \eps}}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+\begin{lemma} \label{lem10} \lean{lemma10}
+If $\eps>0$, $a_1,\ldots,a_k\ge1$ are integers, and $p_1,\ldots, p_k$ are primes, then 
+\[
+\prod_{i\le k, \, p_i^{\eps}\ge 2}\frac{a_i+1}{p_i^{a_i \eps}} \le 1
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem7}
+Uses lemma \ref{lem7}
+\end{proof}
+
+\begin{lemma} \label{lem11} \lean{lemma11}
+If $\eps>0$, $a_1,\ldots,a_k\ge1$ are integers, and $p_1,\ldots, p_k$ are primes, then 
+\[
+\prod_{i\le k, \, p_i^{\eps}< 2}\frac{a_i+1}{p_i^{a_i \eps}} \le \prod_{i\le k, \, p_i^{\eps}< 2}\frac{2}{\eps}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem8}
+Uses lemma \ref{lem8}
+\end{proof}
+
+
+\begin{lemma} \label{lem12} \lean{lemma12}
+If $\eps>0$, $a_1,\ldots,a_k\ge1$ are integers, and $p_1,\ldots, p_k$ are primes, then 
+\[
+\prod_{i\le k, \, p_i^{\eps}< 2}\frac{2}{\eps} \le (2/\eps)^{2^{1/\eps}}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+
+\begin{lemma} \label{lem13} \lean{lemma13}
+If $\eps>0$, $a_1,\ldots,a_k\ge1$ are integers, and $p_1,\ldots, p_k$ are primes, then 
+\[
+\prod_{i\le k}\frac{a_i+1}{p_i^{a_i \eps}} \le (2/\eps)^{2^{1/\eps}}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem9, lem10, lem11, lem12}
+Uses lemmas \ref{lem9}, \ref{lem10}, \ref{lem11}, \ref{lem12}
+\end{proof}
+
+\begin{lemma} \label{lem14} \lean{lemma14}
+Let $\eps>0$. Then $(2/\eps)^{2^{1/\eps}} \le O_\eps(1)$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses definition of $O_\eps(1)$.
+\end{proof}
+
+\begin{lemma} \label{lem15} \lean{lemma15}
+Let $\eps>0$ and $n\ge1$. Then $\frac{\tau(n)}{n^\eps}\le O_\eps(1)$
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem6, lem13, lem14}
+Uses lemma \ref{lem6}, \ref{lem13}, \ref{lem14}
+\end{proof}
+
+\begin{lemma} \label{lem16} \lean{lemma16}
+Let $\eps>0$ and $n\ge1$. Then $\tau(n) \le O_\eps(n^\eps)$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem15}
+Uses lemma \ref{lem15}
+\end{proof}
+
+\begin{lemma} \label{lem17} \lean{lemma17}
+We have $\tau(n) \le O_\eps(n^\eps)$ for any integer $n\ge1$ and any $\eps>0$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem16}
+Uses lemma \ref{lem16}
+\end{proof}
+
+\begin{theorem}[Divisor bound] \label{lem:div} \label{thm18} \lean{divisor_bound_tau_le_n_pow_o_one}
+We have $\tau(n) \le n^{o(1)}$ for any integer $n\ge1$.
+\end{theorem}
+\begin{proof}\leanok
+\uses{lem17}
+Uses lemma \ref{lem17} and definition of $o(1)$.
+\end{proof}
+
+
+\begin{definition}[Radical] \label{def19} \lean{rad}\leanok
+For an integer $n\ge1$ define the radical $\rad(n)=\prod_{p\mid n}p$.
+\end{definition}
+
+\begin{lemma} \label{lem20} \lean{rad_eq_prod_distinct_prime_factors}
+If $n = p_1^{a_1}\cdots p_k^{a_k}$ is the prime factorization of an integer, then $\rad(n)=p_1\cdots p_k$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{def19}
+Uses definition \ref{def19}.
+\end{proof}
+
+\begin{lemma} \label{lem21} \lean{rad_mul_of_coprime}
+$\rad(n)$ is a multiplicative function. That is, if $a,b\ge1$ are integers with $\gcd(a,b)=1$ then $\rad(ab) = \rad(a)\rad(b)$. 
+\end{lemma}
+\begin{proof}\leanok
+\uses{thm3, lem20}
+Uses lemma \ref{lem20} and theorem \ref{thm3}.
+\end{proof}
+
+\begin{lemma} \label{lem22} \lean{rad_abc_of_coprime}
+If $a,b\ge1$ are integers with $\gcd(a,bc)=1$ and $\gcd(b,c)=1$ then $\rad(abc) = \rad(a)\rad(b)\rad(c)$. 
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem21}
+Uses lemma \ref{lem21} with $\{a,bc\}$, and again uses lemma \ref{lem21} with $\{b,c\}$
+\end{proof}
+
+\begin{lemma} \label{lem23} \lean{lemma23}
+If $a,b\ge1$ are integers with $\gcd(a,bc)=1$ and $\gcd(b,c)=1$ then $\rad(ab) \rad(ac)\rad(bc) = (\rad(abc))^2$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem21, lem22}
+Uses lemma \ref{lem22}, and then uses lemma \ref{lem21} three times, with $\{a,b\}$ and $\{a,c\}$ and $\{b,c\}$.
+\end{proof}
+
+
+\begin{lemma} \label{lem24} \lean{lemma24}
+Let $p_1<\cdots<p_k$ be distinct primes, and denote the product $r = p_1 \cdots p_k$. If an integer $n\ge1$ satisfies $\rad(n)=r$, then $n = p_1^{a_1}\cdots p_k^{a_k}$ for some integers $a_1,\dots,a_k\ge 1$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{thm3, lem20}
+Uses theorem \ref{thm3} with $n$, then uses lemma \ref{lem20}.
+\end{proof}
+
+\begin{definition} \label{def25} \lean{radical_set}\leanok
+Let $N,r\ge1$. Define $\mathcal{R}(r,N):= \Bigl\{ n\le N : \rad(n)=r \Bigr\}$. When context is clear, we may simply write $\mathcal{R}=\mathcal{R}(r,N)$.
+\end{definition}
+
+\begin{lemma} \label{lem26} \lean{lemma26}
+Let $p_1<\cdots<p_k$ be distinct primes, and denote the product $r = p_1 \cdots p_k$. Then
+\[
+\mathcal{R} \subset \Bigl\{\, p_1^{a_1}\cdots p_k^{a_k} : a_1,\dots,a_k\ge1\,\Bigr\}.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{def25, thm3, lem20}
+Uses lemma \ref{lem20} and theorem \ref{thm3}.
+\end{proof}
+
+\begin{lemma} \label{lem27} \lean{card_finset_eq_sum_ones}
+For any set $\mathcal S\subset \Z$, we have $|\mathcal S| = \sum_{n\in S}1$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+\begin{lemma} \label{lem28} \lean{lemma28}
+If $\eps>0$ and $1\le n\le N$, then $\frac{1}{n^{\eps}} \ge \frac{1}{N^{\eps}}$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+\begin{lemma} \label{lem29} \lean{lemma29}
+For any $\eps>0$ and $N,r\ge1$, we have
+\[
+\sum_{n\in \mathcal{R}}\frac{1}{n^{\eps}} \ge \frac{|\mathcal{R}|}{N^\eps},
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{def25, lem27, lem28}
+Uses lemma \ref{lem27} with $\mathcal S=\mathcal R$, and lemma \ref{lem28}.
+\end{proof}
+
+\begin{lemma} \label{lem30}
+Let $\eps>0$ and $N\ge1$. If $r=p_1p_2$, then $\mathcal{R} = \mathcal{R}(r,N)$ satisfies
+\[
+\sum_{n\in \mathcal{R}}\frac{1}{n^{\eps}} 
+\le \sum_{a_1\ge1}\sum_{a_2\ge1} \frac{1}{(p_1^{a_1}p_2^{a_2})^\eps}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem26}
+Uses lemma \ref{lem26}.
+\end{proof}
+
+\begin{lemma} \label{lem31} \lean{lemma31}
+Let $\eps>0$ and $N\ge1$. If $r=p_1\cdots p_k$, then $\mathcal{R} = \mathcal{R}(r,N)$ satisfies
+\[
+\sum_{n\in \mathcal{R}}\frac{1}{n^{\eps}} 
+\le \sum_{a_1,\ldots, a_k\ge1} \frac{1}{(p_1^{a_1}\cdots p_k^{a_k})^\eps}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem26}
+Uses lemma \ref{lem26}.
+\end{proof}
+
+\begin{lemma} \label{lem32} \lean{lemma32}
+Let $\eps>0$ and $N\ge1$. Then
+\[
+\sum_{a_1\ge1}\sum_{a_2\ge1} \frac{1}{(p_1^{a_1}p_2^{a_2})^\eps} = \Bigl(\sum_{a_1\ge1} \frac{1}{p_1^{\eps a_1}}\Bigr) \Bigl(\sum_{a_2\ge1} \frac{1}{p_2^{\eps a_2}}\Bigr)
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+\begin{lemma} \label{lem33} \lean{lemma33}
+Let $\eps>0$ and $p_1<\cdots<p_k$ be distinct primes. Then
+\[
+\sum_{a_1,\ldots, a_k\ge1} \frac{1}{(p_1^{a_1}\cdots p_k^{a_k})^\eps}
+= \prod_{i\le k} \Bigl(\sum_{a_i\ge1} \frac{1}{p_i^{\eps a_i}}\Bigr)
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+\begin{theorem}[Geometric series] \label{lem34} \lean{geometric_series}
+For any $0<x<1$ we have $\sum_{a\ge1} x^a = \frac{x}{x-1}$.
+\end{theorem}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+\begin{lemma} \label{lem35} \lean{lemma35}
+Let $\eps>0$ and let $p_i\ge2$ be a prime. Then
+\[
+\sum_{a_i\ge1} \frac{1}{p_i^{\eps a_i}} = \frac{1}{p_i^\eps-1}.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem34}
+Uses lemma \ref{lem34}
+\end{proof}
+
+\begin{lemma} \label{lem36} \lean{lemma36}
+Let $\eps>0$ and let $p_1<\cdots<p_k$ be distinct primes. Then
+\[
+\prod_{i\le k} \Bigl(\sum_{a_i\ge1} \frac{1}{p_i^{\eps a_i}}\Bigr)
+=\prod_{i\le k} \frac{1}{p_i^\eps-1}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem35}
+Uses lemma \ref{lem35}
+\end{proof}
+
+\begin{lemma} \label{lem37} \lean{lemma37}
+Let $\eps>0$ and let $p_1<\cdots<p_k$ be distinct primes. Then
+\[
+\prod_{i\le k} \frac{1}{p_i^\eps-1} = \prod_{i\le k, \, p_i^{\eps}\ge 2} \frac{1}{p_i^\eps-1}\prod_{i\le k, \, p_i^{\eps}< 2} \frac{1}{p_i^\eps-1}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+
+\begin{lemma} \label{lem38} \lean{lemma38}
+Let $p_i,a_i\ge1$ and $\eps>0$. If $p_i^{\eps}\ge 2$ then $\frac{1}{p_i^{\eps}-1}\le 1$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous result
+\end{proof}
+
+\begin{lemma} \label{lem39} \lean{lemma39}
+Let $\eps>0$ and let $p_1<\cdots<p_k$ be distinct primes. Then
+\[
+\prod_{i\le k, \, p_i^{\eps}\ge 2} \frac{1}{p_i^\eps-1} \le 1.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem38}
+Uses lemma \ref{lem38}
+\end{proof}
+
+\begin{lemma} \label{lem40} \lean{lemma40}
+Let $\eps>0$. Then $\frac{1}{2^{\eps}-1} \le \frac{2}{\eps}$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem2}
+Uses lemma \ref{lem2}
+\end{proof}
+
+\begin{lemma} \label{lem41} \lean{lemma41}
+Let $p_i\ge2$, $a_i\ge1$ and $\eps>0$. If $p_i^{\eps}< 2$ then $\frac{1}{p_i^{\eps}-1} \le \frac{2}{\eps}$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem40}
+Uses $p_i\ge2$ and lemma \ref{lem40}
+\end{proof}
+
+\begin{lemma} \label{lem42} \lean{lemma42}
+Let $\eps>0$ and let $p_1<\cdots<p_k$ be distinct primes. Then
+\[
+\prod_{i\le k, \, p_i^{\eps}< 2} \frac{1}{p_i^\eps-1} \le 
+\prod_{i\le k, \, p_i^{\eps}< 2} \frac{2}{\eps}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem41}
+Uses lemma \ref{lem41}
+\end{proof}
+
+\begin{lemma} \label{lem43} \lean{lemma12}
+Let $\eps>0$ and let $p_1<\cdots<p_k$ be distinct primes. Then
+\[
+\prod_{i\le k, \, p_i^{\eps}< 2} \frac{2}{\eps} \le (2/\eps)^{2^{1/\eps}}.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous results
+\end{proof}
+
+\begin{lemma} \label{lem44} \lean{lemma44}
+Let $\eps>0$ and let $p_1<\cdots<p_k$ be distinct primes. Then
+\[
+\prod_{i\le k} \frac{1}{p_i^\eps-1} \le (2/\eps)^{2^{1/\eps}}.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem37, lem39, lem42, lem43}
+Uses lemmas \ref{lem37}, \ref{lem39}, \ref{lem42}, \ref{lem43}
+\end{proof}
+
+\begin{lemma} \label{lem45} \lean{lemma45}
+Let $\eps>0$ and $N\ge1$. Then $(2/\eps)^{2^{1/\eps}}  \le O_\eps(1)$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem14}
+Uses lemma \ref{lem14}.
+\end{proof}
+
+
+\begin{lemma} \label{lem46} \lean{lemma46}
+For any $\eps>0$ and $N,r\ge1$, we have
+\[
+\frac{|\mathcal{R}|}{N^\eps} \le O_\eps(1).
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem29, lem31, lem33, lem36, lem44, lem45}
+Uses lemmas \ref{lem29}, \ref{lem31}, \ref{lem33}, \ref{lem36}, \ref{lem44}, \ref{lem45}.
+\end{proof}
+
+\begin{lemma} \label{lem47} \lean{lemma47}
+Let $\eps>0$ and $1\le r\le N$. Then we have
+\[
+|\mathcal{R}(r,N)| \le O_\eps(N^\eps)
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem46}
+Uses lemma \ref{lem46}
+\end{proof}
+
+
+\begin{theorem} \label{lem:radical} \label{thm48} \lean{theorem48}
+Let $1\le r\le N$. Then we have
+\[
+|\mathcal{R}(r,N)| \le N^{o(1)}.
+\]
+\end{theorem}
+\begin{proof}\leanok
+\uses{lem47}
+Uses lemma \ref{lem47} and definition of $o(1)$
+\end{proof}
+
+\begin{lemma} \label{lem49} \lean{lemma49}
+Let $N\ge1$ and $0<\lambda<1$. We have
+\[
+\big|\big\{n\le N : \rad(n) \le N^{\lambda}\big\}\big| = \sum_{1\le r\le N^{\lambda}}\sum_{\substack{1\le n\le N \\ \rad(n) = r}}1
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem27}
+Uses no previous results
+\end{proof}
+
+\begin{lemma} \label{lem50} \lean{lemma50}
+Let $N\ge1$ and $0<\lambda<1$. We have
+\[
+\big|\big\{n\le N : \rad(n) \le N^{\lambda}\big\}\big| = \sum_{1\le r\le N^{\lambda}}|\mathcal R(r,N)|
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem49, def25, lem27}
+Uses lemma \ref{lem49} and definition \ref{def25}.
+\end{proof}
+
+\begin{lemma} \label{lem51} \lean{lemma51}
+Let $N\ge1$ and $0<\lambda<1$. We have
+\[
+\big|\big\{n\le N : \rad(n) \le N^{\lambda}\big\}\big| \le \sum_{1\le r\le N^{\lambda}}N^{o(1)}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem50, thm48}
+Uses lemma \ref{lem50} and theorem \ref{thm48}.
+\end{proof}
+
+
+\begin{theorem}\label{cor:rad}  \label{thm52} \lean{corollary52}
+Let $N\ge1$ and $0<\lambda<1$. We have
+\[
+\big|\big\{n\le N : \rad(n) \le N^{\lambda}\big\}\big| \ \le \ N^{\lambda+o(1)}.
+\]
+\end{theorem}
+\begin{proof}\leanok
+\uses{lem51}
+Uses lemma \ref{lem51}
+\end{proof}
+
+\begin{definition}[Exceptional set]  \label{def53} \lean{exceptionalSet}\leanok
+Let $N\ge1$ and $\eps>0$. Define the exceptional set
+\[
+\mathcal E(N) \; = \; \bigg\{(a,b,c)\in \{1,\ldots,N\}^3 \;:\; \gcd(a,b)=1, a+b=c, \ \rad(abc) \, < \, c^{1-\eps}
+\bigg\}.
+\]
+\end{definition}
+
+\begin{lemma} \label{lem54} \lean{lemma54}
+Let $a,b\ge1$ be integers with $\gcd(a,bc)=1$ and $\gcd(b,c)=1$. If $\rad(ab)$, $\rad(ac)$, $\rad(bc)$ all exceed $c^{\frac{2}{3}(1-\eps)}$, then
+\[
+c^{2-2\eps}\le\rad(ab) \rad(ac)\rad(bc) = (\rad(abc))^2.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem23}
+Uses lemma \ref{lem23}
+\end{proof}
+
+\begin{lemma} \label{lem55} \lean{lemma55}
+Let $a,b\ge1$ be integers with $\gcd(a,bc)=1$ and $\gcd(b,c)=1$. If $\rad(ab)$, $\rad(ac)$, $\rad(bc)$ all exceed $c^{\frac{2}{3}(1-\eps)}$, then $c^{1-\eps}\le\rad(abc)$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem54}
+Uses lemma \ref{lem54}
+\end{proof}
+
+
+\begin{lemma} \label{lem56} \lean{lemma56}
+Let $(a,b,c)\in \mathcal E(N)$. Then either $\rad(ab)<c^{\frac{2}{3}(1-\eps)}$ or $\rad(ac)<c^{\frac{2}{3}(1-\eps)}$ or $\rad(bc)<c^{\frac{2}{3}(1-\eps)}$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{def53, lem55}
+Uses lemma \ref{lem55} in contrapositive form
+\end{proof}
+
+\begin{lemma} \label{lem57} \lean{lemma57}
+Let $(a,b,c)\in \mathcal E(N)$. Then there exist $x,y\in \{a,b,c\}$ with $x\neq y$ and $\rad(xy)\le N^{2/3-\eps}$.
+\end{lemma}
+\begin{proof}\leanok
+\uses{def53, lem56}
+Uses lemma \ref{lem56}
+\end{proof}
+
+\begin{lemma} \label{lem58} \lean{lemma58}
+We have
+\[
+|\mathcal E(N)| = \underset{\substack{1\le a,b,c\le N\\ \gcd(a,b)=1\\ \rad(abc) \ < \ c^{1-\eps} \\ a+b=c}}{\sum\sum\sum} 1.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{def53, lem27}
+Uses no previous results
+\end{proof}
+
+\begin{lemma} \label{lem59} \lean{lemma59}
+Let $\eps>0$ and $N\ge1$. We have
+\[
+\underset{\substack{1\le a,b,c\le N\\ \gcd(a,b)=1\\ \rad(abc) \ < \ c^{1-\eps} \\ a+b=c}}{\sum\sum\sum} 1
+\ \le \ \sum_{r\le N^{2/3-\eps}}\underset{\substack{1\le a,b,c\le N\\ \gcd(a,b)=1\\ r=\rad(abc) \\ a+b=c}}{\sum\sum\sum} 1
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{def53, lem27, lem57}
+Uses no previous results
+\end{proof}
+
+\begin{lemma} \label{lem60} \lean{lemma60}
+Let $\eps>0$ and $r,N\ge1$. We have
+\[
+\underset{\substack{1\le a,b,c\le N\\ \gcd(a,b)=1\\ r=\rad(abc) \\ a+b=c}}{\sum\sum\sum} 1
+\ \le \ 3\underset{\substack{1\le x,y\le N\\ \gcd(x,y)=1\\r=\rad(xy)}}{\sum\sum} 1
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem57}
+Uses lemma \ref{lem57}
+\end{proof}
+
+\begin{lemma} \label{lem61} \lean{lemma61}
+Let $\eps>0$ and $r,N\ge1$. We have
+\[
+\underset{\substack{1\le x,y\le N\\ \gcd(x,y)=1\\r=\rad(xy)}}{\sum\sum} 1 
+\ \le \ \sum_{\substack{1\le n\le N^2\\r=\rad(n)}} \tau(n).
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{def4}
+Uses definition \ref{def4} with $n=xy$
+\end{proof}
+
+\begin{lemma} \label{lem62} \lean{lemma62}
+We have
+\[
+\sum_{\substack{1\le n\le N^2\\r=\rad(n)}} \tau(n)
+\le \sum_{\substack{1\le n\le N^2\\r=\rad(n)}} N^{o(1)}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{thm18}
+Uses theorem \ref{thm18}, and that $n\le N$
+\end{proof}
+
+\begin{lemma} \label{lem63} \lean{lemma63}
+We have
+\[
+3\sum_{r\le N^{2/3-\eps}}\underset{\substack{1\le x,y\le N\\ \gcd(x,y)=1\\r=\rad(xy)}}{\sum\sum} 1 
+\ \le \ \sum_{r\le N^{2/3-\eps}}\sum_{\substack{1\le n\le N^2\\r=\rad(n)}} N^{o(1)}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem61, lem62}
+Uses lemmas \ref{lem61}, \ref{lem62}
+\end{proof}
+
+\begin{lemma} \label{lem64} \lean{lemma64}
+We have
+\[
+\sum_{r\le N^{2/3-\eps}}\sum_{\substack{1\le n\le N^2\\r=\rad(n)}}1 = \big|\big\{n\le N^2 : \rad(n) \le N^{2/3-\eps}\big\}\big|.
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{}
+Uses no previous results
+\end{proof}
+
+
+\begin{lemma} \label{lem65} \lean{lemma65}
+Let $N\ge1$ and $\eps>0$.  We have 
+\[
+|\mathcal E(N)| \ \le \ N^{o(1)}\cdot\big|\big\{n\le N^2 : \rad(n) \le N^{2/3-\eps}\big\}\big|
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{lem58, lem59, lem60, lem63, lem64}
+Uses lemmas \ref{lem58}, \ref{lem59}, \ref{lem60}, \ref{lem63}, \ref{lem64}
+\end{proof}
+
+\begin{lemma} \label{lem66} \lean{lemma66}
+Let $N\ge1$ and $\eps>0$. We have 
+\[
+\big|\big\{n\le N^2 : \rad(n) \le N^{2/3-\eps}\big\}\big| \ \le \ N^{2/3-\eps+o(1)}
+\]
+\end{lemma}
+\begin{proof}\leanok
+\uses{def25, thm52}
+Uses definition \ref{def25}, theorem \ref{thm52} with $N^2$ and $\lambda=2/3-\eps$
+\end{proof}
+
+\begin{theorem}\label{thm:deBr} \label{thm67} \lean{theorem67}
+We have $|\mathcal E(N)| \le O(N^{2/3})$.
+\end{theorem}
+\begin{proof}\leanok
+\uses{lem65, lem66}
+Uses lemmas \ref{lem65}, \ref{lem66}
+\end{proof}

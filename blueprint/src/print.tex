@@ -1,0 +1,69 @@
+%======================================================================
+% PREAMBLE
+%======================================================================
+
+\documentclass[a4paper]{report}
+
+% --- Page Layout ---
+\usepackage{geometry} % Modern package for page margins. Replaces fullpage.
+% \geometry{margin=1in} % Example: uncomment and adjust to set margins.
+
+% --- Core LaTeX & Math Packages ---
+\usepackage{expl3} % Required by leanblueprint for dependency graph logic.
+\usepackage{mathtools} % Loads amsmath, provides many improvements.
+\usepackage{amsthm} % For theorem environments (but leanblueprint may override).
+\usepackage{amssymb} % For symbols like \mathbb, though unicode-math also provides them.
+
+% --- Hyperlinks and Lists ---
+\usepackage{enumitem} % For better control over lists.
+\usepackage[unicode,colorlinks=true,linkcolor=blue,urlcolor=magenta,citecolor=blue]{hyperref}
+
+% --- Font and Encoding (for XeLaTeX/LuaLaTeX) ---
+% This is a major package. It MUST come after math packages like amsmath.
+% It provides modern font support and makes amssymb/amsfonts largely redundant.
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+
+% --- Custom Commands ---
+% Blackboard Bold letters
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\F}{{\mathbb F}}
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\T}{{\mathbb T}}
+\newcommand{\D}{{\mathbb D}}
+
+% Math operators (the correct way to define them)
+\DeclareMathOperator\rad{rad}
+\DeclareMathOperator{\diag}{diag}
+
+% Other shortcuts
+\newcommand{\1}{{\mathbf 1}}
+\newcommand{\eps}{\varepsilon} % Using varepsilon (ε) which is often preferred over epsilon (ϵ)
+\renewcommand{\phi}{\varphi}  % Personal preference for phi symbol
+
+% For Lie algebras, use \mathfrak (modern) instead of \frak (old)
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\so}{\mathfrak{so}}
+% Do NOT define \sl, it's a built-in LaTeX command.
+
+% --- LeanBlueprint Macros ---
+% These files from leanblueprint will set up theorem environments, etc.
+% It's important they come AFTER your packages and custom commands.
+\input{macros/common}
+\input{macros/print}
+
+%======================================================================
+% DOCUMENT
+%======================================================================
+
+\title{abc}
+\author{morph}
+
+\begin{document}
+\maketitle
+% The content file contains all the chapters and sections.
+\input{content}
+\end{document}
