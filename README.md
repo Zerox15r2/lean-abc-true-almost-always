@@ -7,3 +7,5 @@ All statements, proofs, and documentation were created by Trinity, an autoformal
 The celebrated *abc* conjecture asserts that, for any `ε > 0`, all solutions to `a + b = c` in triples `a, b, c` of coprime integers must satisfy `rad(abc) ⩾ c ^ (1−ε)`, with finitely many exceptions. We obtain the first formalized theorem towards the *abc* conjecture, showing it is true almost always. Specifically, we formally verify that there are `O(N^{2/3})` such triples `(a, b, c) ∈ [1, N]^3`, which satisfy `rad(abc) < c ^ (1−ε)`.
 
 The final Lean output is in [ABCTrueAlmostAlways.lean](./ABCTrueAlmostAlways/ABCTrueAlmostAlways.lean). The human-supplied blueprint is in [content.tex](./blueprint/src/content.tex).
+
+![Screenshot 2025-06-14 100620](https://github.com/user-attachments/assets/7b4cdf23-04ee-4cef-a78e-cb7c09f8a535)
